@@ -1,6 +1,6 @@
 Getting Started
 ---------------
-This is a demo project to demonstrate how easy is to deploy an application in a multi-cloud 
+This is a demo project to demonstrate how easy is to deploy an K8S application in a multi-cloud 
 (including Akamai Cloud Computing) strategy using Terraform.
 It will create a K8S multi-cloud cluster using `Linode`, `AWS` and `Azure`. The traffic will be delivered/balanced
 by `Akamai`.
