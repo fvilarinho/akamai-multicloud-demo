@@ -1,0 +1,5 @@
+/.idea
+/iac/.terraform*
+/iac/.edgerc
+/iac/terraform.tfstate
+/iac/terraform.tfstate.backup

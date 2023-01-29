@@ -1,0 +1,72 @@
+# Namespace defintion.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: akamai-multicloud-demo
+---
+# Deployment definition.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: akamai-multicloud-demo
+  labels:
+    app: nginx
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: nginx:latest
+          imagePullPolicy: Always
+          name: nginx
+          volumeMounts:
+            - name: pages-volume
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: pages-volume
+          hostPath:
+            path: /usr/share/nginx/html
+      restartPolicy: Always
+---
+# Service definition.
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: akamai-multicloud-demo
+  labels:
+    app: nginx
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx
+  type: ClusterIP
+---
+# Ingress definition.
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ingress
+  namespace: akamai-multicloud-demo
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
