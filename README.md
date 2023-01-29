@@ -6,8 +6,6 @@ It will create a K8S multi-cloud cluster using `Linode`, `AWS` and `Azure`. The 
 by `Akamai`.
 
 ### Comments
-- **All environments variables must also have a secret with the same name.** 
-- **You can define the secret in the repository settings.**
 - **DON'T EXPOSE OR COMMIT ANY SECRET IN THE PROJECT.**
 
 ### Architecture
