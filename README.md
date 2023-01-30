@@ -23,16 +23,16 @@ For further documentation please check the documentation of each tool/service.
 `GitHub`, `Linode`, `AWS`, `Azure` and `Akamai`.
 4. The tokens and credentials for each service must be defined in the UI of each service. Please refer the service 
 documentation.
-6. Install `Terraform` and `Docker` on your local environment.
-5. Fork this project from [`GitHub`](https://www.github.com).
-6. Import the project in IDE.
+5. Install `Terraform` and `Docker` on your local environment.
+6. Fork this project from [`GitHub`](https://www.github.com).
+7. Import the project in IDE.
 
 ### How to run it in the Cloud
 1. Run the `deploy.sh` script that will provision the infrastructure. it will use the file `$HOME/.environment.tfvars`. 
-This file must contains the values of the variables defined in `iac/variables.tf`.
+This file must contain the values of the variables defined in `iac/variables.tf`.
 2. Open the URL `http://<load-balancer-hostname|akamai-property-hostname>` in your preferred browser, after the boot. By
 default, the Akamai Property Hostname is deployed in staging network. Don't forget to spoof the Akamai Staging Network
-in the hosts file of your machine. If you change the deploy to push the Akamai Property into the production network, 
+in the hosts file of your machine. If you want to push the Akamai Property into the production network, 
 don't forget to update the Akamai Property Hostname in your DNS server with the Akamai Edge Hostname or to spoof the 
 Akamai Production Network in the hosts file of your machine.
 
