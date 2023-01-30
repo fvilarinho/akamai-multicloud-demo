@@ -24,9 +24,9 @@ For further documentation please check the documentation of each tool/service.
 `GitHub`, `Linode`, `AWS`, `Azure` and `Akamai`.
 4. The tokens and credentials for each service must be defined in the UI of each service. Please refer the service 
 documentation.
-6. Install `Terraform`, `Kubectl` and `Docker` on your local environment.
-5. Fork this project from [`GitHub`](https://www.github.com).
-6. Import the project in IDE.
+5. Install `Terraform`, `Kubectl` and `Docker` on your local environment.
+6. Fork this project from [`GitHub`](https://www.github.com).
+7. Import the project in IDE.
 
 ### How to run it in the Cloud
 1. Run the `deploy.sh` script that will provision the infrastructure. it will use the file `$HOME/.environment.tfvars`. 
