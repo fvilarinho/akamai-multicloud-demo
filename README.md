@@ -25,6 +25,7 @@ For further documentation please check the documentation of each tool/service.
 documentation.
 5. Fork this project from [`GitHub`](https://www.github.com).
 6. Import the project in IDE.
+7. Install [`Terraform`](https://www.terraform.com) on your local environment.
 
 ### How to run it in the Cloud
 1. Run the `deploy.sh` script that will provision the infrastructure. it will use the file `$HOME/.environment.tfvars`. 
