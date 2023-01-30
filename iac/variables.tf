@@ -17,13 +17,13 @@ variable "linode" {
       label = "multicloud-manager"
       type  = "g6-nanode-1"
       os    = "linode/debian11"
-      user  = "root"
+      user  = "user"
     }
     worker = {
       label = "multicloud-worker1"
       type  = "g6-nanode-1"
       os    = "linode/debian11"
-      user  = "root"
+      user  = "user"
     }
   }
 }
@@ -38,7 +38,7 @@ variable "aws" {
       label = "multicloud-worker2"
       type  = "t2.micro"
       os    = "ami-052465340e6b59fc0"
-      user  = "admin"
+      user  = "user"
     }
   }
 }
@@ -56,7 +56,7 @@ variable "azure" {
         vendor  = "Canonical"
         version = "18.04-LTS"
       }
-      user = "adminuser"
+      user = "user"
     }
   }
 }
