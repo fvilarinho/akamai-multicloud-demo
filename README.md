@@ -8,8 +8,8 @@ by `Akamai`.
 ### Comments
 - **DON'T EXPOSE OR COMMIT ANY SECRET IN THE PROJECT.**
 
-### Architecture
-The application uses:
+### Architecture and requirements
+- [`Terraform 1.3.x`](https://www.terraform.io) - IaC automation tool.
 - [`Nginx 1.x`](https://www.nginx.com) - Web server.
 - [`Docker 20.10.x`](https://www.docker.com) - Containerization platform.
 - [`K3S 1.24.x`](https://k3s.io) - Containers orchestrator.
@@ -23,9 +23,9 @@ For further documentation please check the documentation of each tool/service.
 `GitHub`, `Linode`, `AWS`, `Azure` and `Akamai`.
 4. The tokens and credentials for each service must be defined in the UI of each service. Please refer the service 
 documentation.
+6. Install `Terraform` and `Docker` on your local environment.
 5. Fork this project from [`GitHub`](https://www.github.com).
 6. Import the project in IDE.
-7. Install [`Terraform`](https://www.terraform.com) and [`Kubectl`](https://kubernetes.io/docs/tasks/tools/) on your local environment.
 
 ### How to run it in the Cloud
 1. Run the `deploy.sh` script that will provision the infrastructure. it will use the file `$HOME/.environment.tfvars`. 
