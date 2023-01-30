@@ -10,6 +10,7 @@ by `Akamai`.
 
 ### Architecture and requirements
 - [`Terraform 1.3.x`](https://www.terraform.io) - IaC automation tool.
+- [`Kubectl`](https://kubernetes.io/docs/tasks/tools/) - Kubernetes CLI.
 - [`Nginx 1.x`](https://www.nginx.com) - Web server.
 - [`Docker 20.10.x`](https://www.docker.com) - Containerization platform.
 - [`K3S 1.24.x`](https://k3s.io) - Containers orchestrator.
@@ -23,7 +24,7 @@ For further documentation please check the documentation of each tool/service.
 `GitHub`, `Linode`, `AWS`, `Azure` and `Akamai`.
 4. The tokens and credentials for each service must be defined in the UI of each service. Please refer the service 
 documentation.
-6. Install `Terraform` and `Docker` on your local environment.
+6. Install `Terraform`, `Kubectl` and `Docker` on your local environment.
 5. Fork this project from [`GitHub`](https://www.github.com).
 6. Import the project in IDE.
 
