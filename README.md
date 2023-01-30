@@ -20,7 +20,7 @@ For further documentation please check the documentation of each tool/service.
 1. `Linux` or `macOS` operating system.
 2. You need an IDE such as [`IntelliJ`](https://www.jetbrains.com/pt-br/idea).
 3. You need an account in the following services:
-`GitHub, Linode, AWS, Azure and Akamai`.
+`GitHub`, `Linode`, `AWS`, `Azure` and `Akamai`.
 4. The tokens and credentials for each service must be defined in the UI of each service. Please refer the service 
 documentation.
 5. Fork this project from [`GitHub`](https://www.github.com).
