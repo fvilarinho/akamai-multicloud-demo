@@ -81,7 +81,7 @@ resource "akamai_gtm_property" "application" {
 
 # Definition of the Akamai property CPCode.
 resource "akamai_cp_code" "application" {
-  name        = var.akamai.property.id
+  name        = var.applicatiom.label
   contract_id = var.akamai.contract
   group_id    = var.akamai.group
   product_id  = var.akamai.product
@@ -108,7 +108,7 @@ data "akamai_property_rules_template" "application" {
 
 # Definition of the Akamai property configuration.
 resource "akamai_property" "application" {
-  name        = var.akamai.property.id
+  name        = var.application.label
   contract_id = var.akamai.contract
   group_id    = var.akamai.group
   product_id  = var.akamai.product
@@ -116,7 +116,7 @@ resource "akamai_property" "application" {
   depends_on  = [ akamai_cp_code.application, akamai_gtm_property.application ]
 
   hostnames {
-    cname_from             = var.akamai.property.hostname
+    cname_from             = "${var.application.hostname}.${var.application.domain}"
     cname_to               = var.akamai.property.edgeHostname
     cert_provisioning_type = "CPS_MANAGED"
   }

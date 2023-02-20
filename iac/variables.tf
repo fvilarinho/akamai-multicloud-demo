@@ -5,6 +5,8 @@ variable "application" {
     token      = "token"
     publicKey  = "publicKey"
     privateKey = "privateKey"
+    hostname   = "hostname"
+    domain     = "domain"
   }
 }
 
@@ -76,8 +78,6 @@ variable "akamai" {
     product  = "product"
     email    = "email"
     property = {
-      id           = "akamai-multicloud-demo"
-      hostname     = "hostname"
       edgeHostname = "edgeHostname"
     }
     balancer = {
