@@ -1,12 +1,13 @@
 variable "application" {
   description = "Application attributes."
   default = {
-    label      = "akamai-multicloud-demo"
+    label      = "multicloud"
     token      = "token"
     publicKey  = "publicKey"
     privateKey = "privateKey"
     hostname   = "hostname"
     domain     = "domain"
+    email      = "email"
   }
 }
 
@@ -76,7 +77,6 @@ variable "akamai" {
     contract = "contract"
     group    = "group"
     product  = "product"
-    email    = "email"
     property = {
       edgeHostname = "edgeHostname"
     }

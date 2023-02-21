@@ -127,7 +127,7 @@ resource "akamai_property" "application" {
 resource "akamai_property_activation" "application" {
   property_id                    = akamai_property.application.id
   version                        = akamai_property.application.latest_version
-  contact                        = [ var.akamai.email ]
+  contact                        = [ var.application.email ]
   auto_acknowledge_rule_warnings = true
   depends_on                     = [ akamai_property.application ]
 }
