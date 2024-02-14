@@ -1,0 +1,26 @@
+{
+  "linode": {
+    "region": "us-east",
+    "manager": {
+      "label": "manager",
+      "type": "g6-standard-1",
+      "os": "linode/debian11",
+      "user": "root"
+    },
+    "worker": {
+      "label": "worker1",
+      "type": "g6-standard-1",
+      "os": "linode/debian11",
+      "user": "root"
+    }
+  },
+  "aws": {
+    "region": "us-east-1",
+    "worker": {
+      "label": "worker2",
+      "type": "t2.micro",
+      "os": "ami-052465340e6b59fc0",
+      "user": "admin"
+    }
+  }
+}
