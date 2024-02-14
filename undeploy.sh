@@ -1,32 +1,56 @@
 #!/bin/bash
 
-# Locate the required tools.
-TERRAFORM_CMD=$(which terraform)
+# Checks the dependencies of this script.
+function checkDependencies() {
+  if [ ! -f "$CREDENTIALS_FILENAME" ]; then
+    echo "The credentials filename was not found! Please finish the setup!"
 
-# Check if Terraform is installed.
-if [ ! -f "$TERRAFORM_CMD" ]; then
-  echo "Terraform not found! Please install it first to continue!"
+    exit 1
+  fi
 
-  exit 1
-fi
+  if [ ! -f "$SETTINGS_FILENAME" ]; then
+    echo "The settings filename was not found! Please finish the setup!"
 
-cd iac
+    exit 1
+  fi
 
-# Create credentials.
-./createCredentials.sh
+  if [ -z "$TERRAFORM_CMD" ]; then
+    echo "terraform is not installed! Please install it first to continue!"
 
-# Execute the de-provisioning based on the IaC definition files.
-$TERRAFORM_CMD init --upgrade
+    exit 1
+  fi
+}
 
-status=`echo $?`
+# Prepares the environment to execute this script.
+function prepareToExecute() {
+  source functions.sh
 
-if [ $status -eq 0 ]; then
-  $TERRAFORM_CMD destroy --auto-approve \
-                         -var-file=$HOME/.environment.tfvars
+  showBanner
 
-  status=`echo $?`
-fi
+  cd iac || exit 1
+}
 
-cd ..
+# Destroys the provisioned infrastructure based on the IaC files.
+function undeploy() {
+  $TERRAFORM_CMD init \
+                 -upgrade \
+                 -migrate-state || exit 1
 
-exit $status
+  $TERRAFORM_CMD destroy \
+                 -auto-approve
+}
+
+# Clean-up.
+function cleanUp() {
+  rm -f "$KUBECONFIG_FILENAME"
+}
+
+# Main function.
+function main() {
+  prepareToExecute
+  checkDependencies
+  undeploy
+  cleanUp
+}
+
+main

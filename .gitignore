@@ -1,5 +1,7 @@
 /.idea
+/iac/.credentials
+/iac/.id_rsa
+/iac/.kubeconfig
 /iac/.terraform*
-/iac/.edgerc
-/iac/terraform.tfstate
-/iac/terraform.tfstate.backup
+/iac/settings.json
+/iac/terraform.tfstate*

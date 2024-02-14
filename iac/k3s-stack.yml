@@ -1,0 +1,48 @@
+# Namespace definition.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: akamai-multicloud-demo
+---
+# Deployment definition.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: akamai-multicloud-demo
+  labels:
+    app: nginx
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: nginx:latest
+          imagePullPolicy: Always
+          name: nginx
+      restartPolicy: Always
+---
+# Service definition.
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: akamai-multicloud-demo
+  labels:
+    app: nginx
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+  selector:
+    app: nginx
+  type: NodePort

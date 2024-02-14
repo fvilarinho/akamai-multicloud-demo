@@ -1,38 +1,56 @@
 #!/bin/bash
 
-# Locate the required tools.
-TERRAFORM_CMD=$(which terraform)
+# Checks the dependencies of this script.
+function checkDependencies() {
+  if [ ! -f "$CREDENTIALS_FILENAME" ]; then
+    echo "The credentials filename was not found! Please finish the setup!"
 
-# Check if Terraform is installed.
-if [ ! -f "$TERRAFORM_CMD" ]; then
-  echo "Terraform not found! Please install it first to continue!"
-
-  exit 1
-fi
-
-cd iac
-
-# Create credentials.
-./createCredentials.sh
-
-# Execute the provisioning based on the IaC definition files.
-$TERRAFORM_CMD init --upgrade
-
-status=`echo $?`
-
-if [ $status -eq 0 ]; then
-  $TERRAFORM_CMD plan -var-file=$HOME/.environment.tfvars
-
-  status=`echo $?`
-
-  if [ $status -eq 0 ]; then
-    $TERRAFORM_CMD apply -auto-approve \
-                         -var-file=$HOME/.environment.tfvars
-
-    status=`echo $?`
+    exit 1
   fi
-fi
 
-cd ..
+  if [ ! -f "$SETTINGS_FILENAME" ]; then
+    echo "The settings filename was not found! Please finish the setup!"
 
-exit $status
+    exit 1
+  fi
+
+  if [ -z "$TERRAFORM_CMD" ]; then
+    echo "terraform is not installed! Please install it first to continue!"
+
+    exit 1
+  fi
+
+  if [ -z "$KUBECTL_CMD" ]; then
+    echo "kubectl is not installed! Please install it first to continue!"
+
+    exit 1
+  fi
+}
+
+# Prepares the environment to execute this script.
+function prepareToExecute() {
+  source functions.sh
+
+  showBanner
+
+  cd iac || exit 1
+}
+
+# Starts the provisioning based on the IaC files.
+function deploy() {
+  $TERRAFORM_CMD init \
+                 -upgrade \
+                 -migrate-state || exit 1
+
+  $TERRAFORM_CMD apply \
+                 -auto-approve
+}
+
+# Main function.
+function main() {
+  prepareToExecute
+  checkDependencies
+  deploy
+}
+
+main
