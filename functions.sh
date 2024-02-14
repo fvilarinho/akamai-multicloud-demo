@@ -38,7 +38,6 @@ function prepareToExecute() {
   export CREDENTIALS_FILENAME="$WORK_DIR"/.credentials
   export SETTINGS_FILENAME="$WORK_DIR"/settings.json
   export PRIVATE_KEY_FILENAME="$WORK_DIR"/.id_rsa
-  export IDENTIFIER=multicloud
   export KUBECONFIG_FILENAME="$WORK_DIR"/.kubeconfig
 
   # Required binaries.
@@ -49,7 +48,6 @@ function prepareToExecute() {
   export TF_VAR_credentialsFilename="$CREDENTIALS_FILENAME"
   export TF_VAR_settingsFilename="$SETTINGS_FILENAME"
   export TF_VAR_privateKeyFilename="$PRIVATE_KEY_FILENAME"
-  export TF_VAR_identifier="$IDENTIFIER"
   export TF_VAR_awsAccessKey=$(getCredential "aws" "aws_access_key_id")
   export TF_VAR_awsSecretKey=$(getCredential "aws" "aws_secret_access_key")
 }
