@@ -29,18 +29,18 @@ resource "local_sensitive_file" "privateKey" {
 
 # Definition of the public key stored in the Linode nodes.
 resource "linode_sshkey" "default" {
-  label      = var.identifier
+  label      = local.settings.tag
   ssh_key    = chomp(tls_private_key.default.public_key_openssh)
   depends_on = [ tls_private_key.default ]
 }
 
 # Definition of the public key stored in the AWS nodes.
 resource "aws_key_pair" "default" {
-  key_name   = var.identifier
+  key_name   = local.settings.tag
   public_key = tls_private_key.default.public_key_openssh
 
   tags = {
-    Name = var.identifier
+    Name = local.settings.tag
   }
 
   depends_on = [ tls_private_key.default ]

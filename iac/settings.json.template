@@ -1,4 +1,5 @@
 {
+  "tag": "multicloud",
   "linode": {
     "region": "us-east",
     "manager": {

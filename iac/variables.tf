@@ -13,11 +13,6 @@ variable "privateKeyFilename" {
   type = string
 }
 
-# Identifier filename.
-variable "identifier" {
-  type = string
-}
-
 # AWS Access Key.
 variable "awsAccessKey" {
   type = string

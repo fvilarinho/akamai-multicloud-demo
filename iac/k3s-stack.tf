@@ -1,9 +1,5 @@
 # Apply the stack in the K3S cluster.
 resource "null_resource" "applyStack" {
-  triggers = {
-    always_run = timestamp()
-  }
-
   # Execute the apply script.
   provisioner "local-exec" {
     environment = {

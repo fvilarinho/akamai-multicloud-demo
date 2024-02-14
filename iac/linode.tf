@@ -10,7 +10,7 @@ resource "linode_instance" "manager" {
   type            = local.settings.linode.manager.type
   image           = local.settings.linode.manager.os
   region          = local.settings.linode.region
-  tags            = [ var.identifier ]
+  tags            = [ local.settings.tag ]
   authorized_keys = [ linode_sshkey.default.ssh_key ]
 
   # Installs the Kubernetes distribution (K3S) after the provisioning.
@@ -43,7 +43,7 @@ resource "linode_instance" "worker" {
   type            = local.settings.linode.worker.type
   image           = local.settings.linode.worker.os
   region          = local.settings.linode.region
-  tags            = [ var.identifier ]
+  tags            = [ local.settings.tag ]
   authorized_keys = [ linode_sshkey.default.ssh_key ]
   depends_on      = [ linode_instance.manager ]
 
