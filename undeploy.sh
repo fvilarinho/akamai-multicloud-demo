@@ -15,7 +15,7 @@ function checkDependencies() {
   fi
 
   if [ -z "$TERRAFORM_CMD" ]; then
-    echo "terraform is not installed! Please install it first to continue!"
+    echo "Terraform is not installed! Please install it first to continue!"
 
     exit 1
   fi

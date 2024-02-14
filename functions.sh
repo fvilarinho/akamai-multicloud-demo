@@ -31,37 +31,19 @@ function getCredential() {
   echo "$value"
 }
 
-# Checks the dependencies of this script.
-function checkDependencies() {
-  # Finds terraform binary.
-  export TERRAFORM_CMD=$(which terraform)
-
-  # Checks if terraform is installed.
-  if [ -z "$TERRAFORM_CMD" ]; then
-    echo "Terraform is not installed! Please install it first to continue!"
-
-    exit 1
-  fi
-
-  export KUBECTL_CMD=$(which kubectl)
-
-  # Check if the Kubectl was found.
-  if [ ! -f "$KUBECTL_CMD" ]; then
-    echo "Kubectl is not installed! Please install it first to continue!"
-
-    exit 1
-  fi
-}
-
 # Prepares the environment to execute the commands of this script.
 function prepareToExecute() {
-  # Mandatory files/paths.
+  # Required files/paths.
   export WORK_DIR="$PWD/iac"
   export CREDENTIALS_FILENAME="$WORK_DIR"/.credentials
   export SETTINGS_FILENAME="$WORK_DIR"/settings.json
   export PRIVATE_KEY_FILENAME="$WORK_DIR"/.id_rsa
   export IDENTIFIER=multicloud
   export KUBECONFIG_FILENAME="$WORK_DIR"/.kubeconfig
+
+  # Required binaries.
+  export TERRAFORM_CMD=$(which terraform)
+  export KUBECTL_CMD=$(which kubectl)
 
   # Environment variables.
   export TF_VAR_credentialsFilename="$CREDENTIALS_FILENAME"
@@ -72,5 +54,4 @@ function prepareToExecute() {
   export TF_VAR_awsSecretKey=$(getCredential "aws" "aws_secret_access_key")
 }
 
-checkDependencies
 prepareToExecute

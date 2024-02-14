@@ -15,13 +15,13 @@ function checkDependencies() {
   fi
 
   if [ -z "$TERRAFORM_CMD" ]; then
-    echo "terraform is not installed! Please install it first to continue!"
+    echo "Terraform is not installed! Please install it first to continue!"
 
     exit 1
   fi
 
   if [ -z "$KUBECTL_CMD" ]; then
-    echo "kubectl is not installed! Please install it first to continue!"
+    echo "Kubectl is not installed! Please install it first to continue!"
 
     exit 1
   fi
@@ -41,6 +41,8 @@ function deploy() {
   $TERRAFORM_CMD init \
                  -upgrade \
                  -migrate-state || exit 1
+
+  $TERRAFORM_CMD plan || exit 1
 
   $TERRAFORM_CMD apply \
                  -auto-approve
