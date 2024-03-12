@@ -17,9 +17,6 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
-    akamai = {
-      source = "akamai/akamai"
-    }
   }
 }
 
