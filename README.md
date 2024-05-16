@@ -32,8 +32,8 @@ If you don't have this file, please create one based on `iac/settings.json.templ
 - `export KUBECONFIG=iac/.kubeconfig` - To specify the kubeconfig file needed to connect to the cluster.
 - `kubectl get nodes -o wide` - To see all nodes in the cluster.
 - `kubectl get pods -n akamai-multicloud-demo` - To see all pods running in the cluster.
-3. Open the following url to see the application:
-- `http://<node-ip>:30080` 
+3. Open the following urls to see the application:
+- `http://<node-ip1|node-ip2|node-ip3>`. 
 
 That's it! Now enjoy and have fun!
 
