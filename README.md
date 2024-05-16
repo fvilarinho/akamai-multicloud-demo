@@ -33,7 +33,7 @@ If you don't have this file, please create one based on `iac/settings.json.templ
 - `kubectl get nodes -o wide` - To see all nodes in the cluster.
 - `kubectl get pods -n akamai-multicloud-demo` - To see all pods running in the cluster.
 3. Open the following urls to see the application:
-- `http://<manager-ip|worker1-ip|worker2-ip|worker3-ip>`. 
+- `http://<manager-ip|worker1-ip|worker2-ip|worker3-ip|gtm-hostname|edgedns-hostname>`. 
 
 That's it! Now enjoy and have fun!
 
