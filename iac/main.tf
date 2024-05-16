@@ -17,12 +17,14 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
+    akamai = {
+      source = "akamai/akamai"
+    }
   }
 }
 
 # Defines the required local variables.
 locals {
-  credentialsFilename = pathexpand(var.credentialsFilename)
-  settingsFilename    = pathexpand(var.settingsFilename)
-  settings            = jsondecode(chomp(file(local.settingsFilename)))
+  settingsFilename = pathexpand(var.settingsFilename)
+  settings         = jsondecode(chomp(file(local.settingsFilename)))
 }

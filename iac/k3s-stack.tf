@@ -1,5 +1,9 @@
 # Apply the stack in the K3S cluster.
 resource "null_resource" "applyStack" {
+  triggers = {
+    always_run = filemd5("k3s-stack.yml")
+  }
+
   # Execute the apply script.
   provisioner "local-exec" {
     environment = {

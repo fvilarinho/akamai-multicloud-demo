@@ -45,11 +45,16 @@ function prepareToExecute() {
   export KUBECTL_CMD=$(which kubectl)
 
   # Environment variables.
-  export TF_VAR_credentialsFilename="$CREDENTIALS_FILENAME"
   export TF_VAR_settingsFilename="$SETTINGS_FILENAME"
   export TF_VAR_privateKeyFilename="$PRIVATE_KEY_FILENAME"
+  export TF_VAR_linodeToken=$(getCredential "linode" "token")
   export TF_VAR_awsAccessKey=$(getCredential "aws" "aws_access_key_id")
   export TF_VAR_awsSecretKey=$(getCredential "aws" "aws_secret_access_key")
+  export TF_VAR_edgeGridAccountKey=$(getCredential "edgegrid" "account_key")
+  export TF_VAR_edgeGridHost=$(getCredential "edgegrid" "host")
+  export TF_VAR_edgeGridAccessToken=$(getCredential "edgegrid" "access_token")
+  export TF_VAR_edgeGridClientToken=$(getCredential "edgegrid" "client_token")
+  export TF_VAR_edgeGridClientSecret=$(getCredential "edgegrid" "client_secret")
 }
 
 prepareToExecute

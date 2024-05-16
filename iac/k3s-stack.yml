@@ -27,8 +27,8 @@ spec:
           imagePullPolicy: Always
           name: nginx
       restartPolicy: Always
----
 # Service definition.
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,7 +42,25 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30080
   selector:
     app: nginx
-  type: NodePort
+---
+# Ingress definition.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: akamai-multicloud-demo
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80

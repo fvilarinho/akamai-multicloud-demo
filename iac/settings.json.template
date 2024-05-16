@@ -1,27 +1,56 @@
 {
   "tag": "multicloud",
   "linode": {
-    "region": "us-east",
+    "region": "<region>",
     "manager": {
       "label": "manager",
-      "type": "g6-standard-1",
-      "os": "linode/debian11",
-      "user": "root"
+      "type": "<type>",
+      "os": "<image>",
+      "user": "<user>"
     },
     "worker": {
       "label": "worker1",
-      "type": "g6-standard-1",
-      "os": "linode/debian11",
-      "user": "root"
+      "type": "<type>",
+      "os": "<image>",
+      "user": "<user>"
     }
   },
   "aws": {
-    "region": "us-east-1",
+    "region": "<region>",
     "worker": {
       "label": "worker2",
-      "type": "t2.micro",
-      "os": "ami-052465340e6b59fc0",
-      "user": "admin"
+      "type": "<type>",
+      "os": "<image>",
+      "user": "<user>"
+    }
+  },
+  "akamai": {
+    "contract": "<contract>",
+    "group": "<group>",
+    "gtm": {
+      "label": "demo",
+      "type": "weighted",
+      "mode": "round-robin",
+      "ttl": 30,
+      "scoreAggregationType": "median",
+      "handout": {
+        "limit": 5,
+        "mode": "normal"
+      },
+      "livenessTest": {
+        "label": "checkTcpConnection",
+        "protocol": "TCP",
+        "interval": 10,
+        "timeout": 5
+      },
+      "weights": [34, 33, 33],
+      "failover": "<failover>",
+      "dns": {
+        "name": "<name>",
+        "zone": "<zone>",
+        "ttl": 30
+      }
+
     }
   }
 }
