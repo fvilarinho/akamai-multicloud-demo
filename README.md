@@ -18,7 +18,7 @@ For further details please check the documentation of each tool/service.
 1. `Linux` or `macOS` operating system.
 2. You need an IDE such as [`IntelliJ`](https://www.jetbrains.com/pt-br/idea).
 3. You need an account in `GitHub`, `Linode`, `AWS`, `DigitalOcean` and `Akamai`.
-4. The tokens and credentials for each service must be defined in `iac/.credentials' file. Please follow the template 
+4. The tokens and credentials for each service must be defined in `iac/.credentials` file. Please follow the template 
 `iac/.credentials.template`.
 5. Install `Terraform` and `Kubectl` on your local environment.
 6. Download/Clone/Fork this project from [`GitHub`](https://www.github.com/fvilarinho/akamai-multicloud-demo).
