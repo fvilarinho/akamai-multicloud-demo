@@ -1,7 +1,7 @@
 Getting Started
 ---------------
-This is a demo project to demonstrate how easy is to deploy a K8S application (Web Server) in multi-cloud using 
-Terraform. It will create a K3S cluster using `Linode`, `AWS`, `DigitalOcean` and `Akamai`
+This is a demo project to demonstrate how easy is to deploy an application (Web Server) in a K8S multi-cloud cluster 
+(including Akamai Cloud Computing) using Terraform.
 
 ### Comments
 - **DON'T EXPOSE OR COMMIT ANY SECRET IN THE PROJECT.**
