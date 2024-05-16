@@ -12,7 +12,7 @@ Terraform. It will create a K3S cluster using `Linode`, `AWS`, `DigitalOcean` an
 - [`Nginx 1.x`](https://www.nginx.com) - Web Server.
 - [`K3S 1.28.x`](https://k3s.io) - Lightweight K8S.
 
-For further documentation please check the documentation of each tool/service.
+For further details please check the documentation of each tool/service.
 
 ### How to install
 1. `Linux` or `macOS` operating system.
