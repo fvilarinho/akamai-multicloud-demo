@@ -15,6 +15,15 @@
       "user": "<user>"
     }
   },
+  "digitalocean": {
+    "worker": {
+      "label": "worker3",
+      "type": "<type>",
+      "os": "<image>",
+      "region": "<region>",
+      "user": "<user>"
+    }
+  },
   "aws": {
     "region": "<region>",
     "worker": {
@@ -43,14 +52,13 @@
         "interval": 10,
         "timeout": 5
       },
-      "weights": [34, 33, 33],
+      "weights": [25, 25, 25, 25],
       "failover": "<failover>",
       "dns": {
         "name": "<name>",
         "zone": "<zone>",
         "ttl": 30
       }
-
     }
   }
 }

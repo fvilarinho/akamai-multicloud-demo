@@ -18,6 +18,7 @@ resource "null_resource" "applyStack" {
   depends_on = [
     linode_instance.manager,
     linode_instance.worker,
-    aws_instance.worker
+    aws_instance.worker,
+    digitalocean_droplet.worker
   ]
 }

@@ -6,14 +6,13 @@ metadata:
 ---
 # Deployment definition.
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: nginx
   namespace: akamai-multicloud-demo
   labels:
     app: nginx
 spec:
-  replicas: 20
   selector:
     matchLabels:
       app: nginx

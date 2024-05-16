@@ -1,10 +1,10 @@
 # Creates the K3S cluster manager node.
 resource "linode_instance" "manager" {
   label           = local.settings.linode.manager.label
-  type            = local.settings.linode.manager.type
-  image           = local.settings.linode.manager.os
-  region          = local.settings.linode.region
   tags            = [ local.settings.tag ]
+  type            = local.settings.linode.manager.type
+  region          = local.settings.linode.manager.region
+  image           = local.settings.linode.manager.os
   authorized_keys = [ linode_sshkey.default.ssh_key ]
 
   # Installs the Kubernetes distribution (K3S) after the provisioning.
@@ -20,7 +20,7 @@ resource "linode_instance" "manager" {
     inline = [
       "hostnamectl set-hostname ${local.settings.linode.manager.label}",
       "export DEBIAN_FRONTEND=noninteractive",
-      "apt -y update",
+      "apt update",
       "apt -y upgrade",
       "apt -y install bash ca-certificates curl wget htop dnsutils net-tools vim unzip",
       "export K3S_TOKEN=\"${random_string.clusterToken.result}\"",
@@ -34,12 +34,11 @@ resource "linode_instance" "manager" {
 # Creates the K3S cluster worker node 1.
 resource "linode_instance" "worker" {
   label           = local.settings.linode.worker.label
-  type            = local.settings.linode.worker.type
-  image           = local.settings.linode.worker.os
-  region          = local.settings.linode.region
   tags            = [ local.settings.tag ]
+  type            = local.settings.linode.worker.type
+  region          = local.settings.linode.worker.region
+  image           = local.settings.linode.worker.os
   authorized_keys = [ linode_sshkey.default.ssh_key ]
-  depends_on      = [ linode_instance.manager ]
 
   # Installs the Kubernetes distribution (K3S) after the provisioning.
   provisioner "remote-exec" {
@@ -54,7 +53,7 @@ resource "linode_instance" "worker" {
     inline = [
       "hostnamectl set-hostname ${local.settings.linode.worker.label}",
       "export DEBIAN_FRONTEND=noninteractive",
-      "apt -y update",
+      "apt update",
       "apt -y upgrade",
       "apt -y install bash ca-certificates curl wget htop dnsutils net-tools vim unzip",
       "export K3S_TOKEN=\"${random_string.clusterToken.result}\"",
@@ -63,4 +62,6 @@ resource "linode_instance" "worker" {
       "curl -sfL https://get.k3s.io | sh -s - --node-external-ip=${self.ip_address}"
     ]
   }
+
+  depends_on = [ linode_instance.manager ]
 }

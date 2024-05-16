@@ -39,11 +39,19 @@ resource "akamai_gtm_property" "default" {
     enabled       = true
   }
 
+  traffic_target {
+    datacenter_id = akamai_gtm_datacenter.worker3.datacenter_id
+    weight        = local.settings.akamai.gtm.weights[3]
+    servers       = [ digitalocean_droplet.worker.ipv4_address ]
+    enabled       = true
+  }
+
   depends_on = [
     akamai_gtm_domain.default,
     akamai_gtm_datacenter.manager,
     akamai_gtm_datacenter.worker1,
-    akamai_gtm_datacenter.worker2
+    akamai_gtm_datacenter.worker2,
+    akamai_gtm_datacenter.worker3
   ]
 }
 

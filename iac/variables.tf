@@ -8,6 +8,11 @@ variable "privateKeyFilename" {
   type = string
 }
 
+# DigitalOcean API token.
+variable "digitaloceanToken" {
+  type = string
+}
+
 # Linode API token.
 variable "linodeToken" {
   type = string

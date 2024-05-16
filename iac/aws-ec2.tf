@@ -18,7 +18,8 @@ resource "aws_instance" "worker" {
 
     # Installation script.
     inline = [
-      "sudo DEBIAN_FRONTEND=noninteractive apt -y update",
+      "sudo hostnamectl set-hostname ${local.settings.aws.worker.label}",
+      "sudo DEBIAN_FRONTEND=noninteractive apt update",
       "sudo DEBIAN_FRONTEND=noninteractive apt -y upgrade",
       "sudo DEBIAN_FRONTEND=noninteractive apt -y install bash ca-certificates curl wget htop dnsutils net-tools vim unzip",
       "curl -sfL https://get.k3s.io | sudo K3S_TOKEN=\"${random_string.clusterToken.result}\" K3S_URL=https://${linode_instance.manager.ip_address}:6443 INSTALL_K3S_EXEC=agent sh -s - --node-external-ip=${self.public_ip}"

@@ -22,6 +22,9 @@ terraform {
     akamai = {
       source = "akamai/akamai"
     }
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+    }
   }
 }
 
