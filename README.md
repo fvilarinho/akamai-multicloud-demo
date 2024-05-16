@@ -9,7 +9,7 @@ Terraform. It will create a K3S cluster using `Linode`, `AWS`, `DigitalOcean` an
 ### Architecture and requirements
 - [`Terraform 1.5.x`](https://www.terraform.io) - IaC automation tool.
 - [`Kubectl`](https://kubernetes.io/docs/tasks/tools/) - Kubernetes CLI.
-- [`Nginx 1.x`](https://www.nginx.com) - Web server.
+- [`Nginx 1.x`](https://www.nginx.com) - Web Server.
 - [`K3S 1.28.x`](https://k3s.io) - Lightweight K8S.
 
 For further documentation please check the documentation of each tool/service.
