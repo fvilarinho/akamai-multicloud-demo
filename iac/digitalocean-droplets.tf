@@ -29,5 +29,8 @@ resource "digitalocean_droplet" "worker" {
     ]
   }
 
-  depends_on = [ digitalocean_ssh_key.default ]
+  depends_on = [
+    linode_instance.manager,
+    digitalocean_ssh_key.default
+  ]
 }
