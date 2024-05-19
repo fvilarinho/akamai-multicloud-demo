@@ -1,10 +1,10 @@
 # Creates the K3S cluster worker node 3.
 resource "digitalocean_droplet" "worker" {
-  name     = local.settings.digitalocean.worker.label
-  tags     = [ local.settings.tag ]
+  name     = local.settings.digitalocean.worker.name
   size     = local.settings.digitalocean.worker.type
   region   = local.settings.digitalocean.worker.region
   image    = local.settings.digitalocean.worker.os
+  tags     = local.settings.tags
   ssh_keys = [ digitalocean_ssh_key.default.id ]
 
   # Installs the Kubernetes distribution (K3S) after the provisioning.

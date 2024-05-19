@@ -1,4 +1,4 @@
-# Definition of the GTM datacenters.
+# Definition of the GTM datacenters locations.
 data "linode_region" "manager" {
   id = local.settings.linode.manager.region
 }
@@ -16,7 +16,7 @@ data "digitalocean_region" "worker" {
 
 resource "akamai_gtm_datacenter" "manager" {
   domain     = akamai_gtm_domain.default.name
-  nickname   = "linode-${local.settings.linode.manager.label}"
+  nickname   = "linode-${local.settings.linode.manager.name}"
   city       = data.linode_region.manager.label
   depends_on = [
     data.linode_region.manager,
@@ -26,7 +26,7 @@ resource "akamai_gtm_datacenter" "manager" {
 
 resource "akamai_gtm_datacenter" "worker1" {
   domain     = akamai_gtm_domain.default.name
-  nickname   = "linode-${local.settings.linode.worker.label}"
+  nickname   = "linode-${local.settings.linode.worker.name}"
   city       = data.linode_region.worker.label
   depends_on = [
     data.linode_region.worker,
@@ -36,7 +36,7 @@ resource "akamai_gtm_datacenter" "worker1" {
 
 resource "akamai_gtm_datacenter" "worker2" {
   domain     = akamai_gtm_domain.default.name
-  nickname   = "aws-${local.settings.aws.worker.label}"
+  nickname   = "aws-${local.settings.aws.worker.name}"
   city       = data.aws_region.worker.description
   depends_on = [
     data.aws_region.worker,
@@ -46,7 +46,7 @@ resource "akamai_gtm_datacenter" "worker2" {
 
 resource "akamai_gtm_datacenter" "worker3" {
   domain     = akamai_gtm_domain.default.name
-  nickname   = "digitalocean-${local.settings.digitalocean.worker.label}"
+  nickname   = "digitalocean-${local.settings.digitalocean.worker.name}"
   city       = data.digitalocean_region.worker.name
   depends_on = [
     data.digitalocean_region.worker,

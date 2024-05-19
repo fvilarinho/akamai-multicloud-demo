@@ -1,0 +1,36 @@
+{
+  "name": "Redirects",
+  "children": [
+    {
+      "name": "Redirect to HTTPS",
+      "children": [],
+      "behaviors": [
+        {
+          "name": "redirect",
+          "options": {
+            "destinationHostname": "SAME_AS_REQUEST",
+            "destinationPath": "SAME_AS_REQUEST",
+            "destinationProtocol": "HTTPS",
+            "mobileDefaultChoice": "DEFAULT",
+            "queryString": "APPEND",
+            "responseCode": 301
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "name": "requestProtocol",
+          "options": {
+            "value": "HTTP"
+          }
+        }
+      ],
+      "criteriaMustSatisfy": "all",
+      "comments": "Redirect to the same URL on HTTPS protocol, issuing a 301 response code (Moved Permanently). You may change the response code to 302 if needed."
+    }
+  ],
+  "behaviors": [],
+  "criteria": [],
+  "criteriaMustSatisfy": "all",
+  "comments": ""
+}

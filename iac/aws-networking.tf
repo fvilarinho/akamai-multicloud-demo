@@ -4,7 +4,7 @@ resource "aws_vpc" "default" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "${local.settings.tag}-vpc"
+    Name = "${local.settings.name}-vpc"
   }
 }
 
@@ -16,7 +16,7 @@ resource "aws_subnet" "default" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${local.settings.tag}-subnet"
+    Name = "${local.settings.name}-subnet"
   }
 
   depends_on = [ aws_vpc.default ]
@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "default" {
   vpc_id = aws_vpc.default.id
 
   tags = {
-    Name = "${local.settings.tag}-gateway"
+    Name = "${local.settings.name}-gateway"
   }
 
   depends_on = [ aws_vpc.default ]
@@ -43,7 +43,7 @@ resource "aws_route_table" "default" {
   }
 
   tags = {
-    Name = "${local.settings.tag}-routes"
+    Name = "${local.settings.name}-routes"
   }
 
   depends_on = [
@@ -64,7 +64,7 @@ resource "aws_route_table_association" "application" {
 
 # Definition of the VPC Security Group.
 resource "aws_security_group" "default" {
-  name   = "${local.settings.tag}-firewall"
+  name   = "${local.settings.name}-firewall"
   vpc_id = aws_vpc.default.id
 
   egress {
@@ -82,7 +82,7 @@ resource "aws_security_group" "default" {
   }
 
   tags = {
-    Name = "${local.settings.tag}-firewall"
+    Name = "${local.settings.name}-firewall"
   }
 
   depends_on = [ aws_vpc.default ]

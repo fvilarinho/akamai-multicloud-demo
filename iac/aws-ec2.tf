@@ -4,8 +4,8 @@ resource "aws_instance" "worker" {
   ami                         = local.settings.aws.worker.os
   vpc_security_group_ids      = [ aws_security_group.default.id ]
   subnet_id                   = aws_subnet.default.id
-  key_name                    = aws_key_pair.default.key_name
   associate_public_ip_address = true
+  key_name                    = aws_key_pair.default.key_name
 
   # Installs the Kubernetes distribution (K3S) after the provisioning.
   provisioner "remote-exec" {
@@ -18,7 +18,7 @@ resource "aws_instance" "worker" {
 
     # Installation script.
     inline = [
-      "sudo hostnamectl set-hostname ${local.settings.aws.worker.label}",
+      "sudo hostnamectl set-hostname ${local.settings.aws.worker.name}",
       "sudo DEBIAN_FRONTEND=noninteractive apt update",
       "sudo DEBIAN_FRONTEND=noninteractive apt -y upgrade",
       "sudo DEBIAN_FRONTEND=noninteractive apt -y install bash ca-certificates curl wget htop dnsutils net-tools vim unzip",
@@ -27,7 +27,7 @@ resource "aws_instance" "worker" {
   }
 
   tags = {
-    Name = local.settings.aws.worker.label
+    Name = local.settings.aws.worker.name
   }
 
   depends_on = [

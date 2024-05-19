@@ -1,10 +1,10 @@
 # Creates the K3S cluster manager node.
 resource "linode_instance" "manager" {
-  label           = local.settings.linode.manager.label
-  tags            = [ local.settings.tag ]
+  label           = local.settings.linode.manager.name
   type            = local.settings.linode.manager.type
   region          = local.settings.linode.manager.region
   image           = local.settings.linode.manager.os
+  tags            = local.settings.tags
   authorized_keys = [ linode_sshkey.default.ssh_key ]
 
   # Installs the Kubernetes distribution (K3S) after the provisioning.
@@ -18,7 +18,7 @@ resource "linode_instance" "manager" {
 
     # Installation script.
     inline = [
-      "hostnamectl set-hostname ${local.settings.linode.manager.label}",
+      "hostnamectl set-hostname ${local.settings.linode.manager.name}",
       "export DEBIAN_FRONTEND=noninteractive",
       "apt update",
       "apt -y upgrade",
@@ -33,11 +33,11 @@ resource "linode_instance" "manager" {
 
 # Creates the K3S cluster worker node 1.
 resource "linode_instance" "worker" {
-  label           = local.settings.linode.worker.label
-  tags            = [ local.settings.tag ]
+  label           = local.settings.linode.worker.name
   type            = local.settings.linode.worker.type
   region          = local.settings.linode.worker.region
   image           = local.settings.linode.worker.os
+  tags            = local.settings.tags
   authorized_keys = [ linode_sshkey.default.ssh_key ]
 
   # Installs the Kubernetes distribution (K3S) after the provisioning.
@@ -51,7 +51,7 @@ resource "linode_instance" "worker" {
 
     # Installation script.
     inline = [
-      "hostnamectl set-hostname ${local.settings.linode.worker.label}",
+      "hostnamectl set-hostname ${local.settings.linode.worker.name}",
       "export DEBIAN_FRONTEND=noninteractive",
       "apt update",
       "apt -y upgrade",

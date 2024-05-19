@@ -42,10 +42,16 @@ function deploy() {
                  -upgrade \
                  -migrate-state || exit 1
 
-  $TERRAFORM_CMD plan || exit 1
+  $TERRAFORM_CMD plan -out plan || exit 1
 
   $TERRAFORM_CMD apply \
-                 -auto-approve
+                 -auto-approve \
+                 plan
+}
+
+# Clean-up.
+function cleanUp() {
+  rm -f plan
 }
 
 # Main function.
@@ -53,6 +59,7 @@ function main() {
   prepareToExecute
   checkDependencies
   deploy
+  cleanUp
 }
 
 main

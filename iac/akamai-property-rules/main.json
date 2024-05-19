@@ -1,0 +1,50 @@
+{
+  "rules": {
+    "name": "default",
+    "children": [
+      "#include:offload.json",
+      "#include:performance.json",
+      "#include:redirects.json",
+      "#include:security.json"
+    ],
+    "behaviors": [
+      {
+        "name": "origin",
+        "options": {
+          "cacheKeyHostname": "ORIGIN_HOSTNAME",
+          "compress": true,
+          "customValidCnValues": [
+            "{{Origin Hostname}}",
+            "{{Forward Host Header}}"
+          ],
+          "enableTrueClientIp": false,
+          "forwardHostHeader": "ORIGIN_HOSTNAME",
+          "hostname": "${env.originHostname}",
+          "httpPort": 80,
+          "httpsPort": 443,
+          "originCertsToHonor": "COMBO",
+          "originSni": true,
+          "originType": "CUSTOMER",
+          "verificationMode": "CUSTOM",
+          "ipVersion": "IPV4",
+          "customCertificates": [],
+          "customCertificateAuthorities": [],
+          "standardCertificateAuthorities": [
+            "akamai-permissive",
+            "THIRD_PARTY_AMAZON"
+          ]
+        }
+      },
+      {
+        "name": "cpCode",
+        "options": {
+          "value": {
+            "id": "${env.cpCode}"
+          }
+        }
+      }
+    ],
+    "comments": "The behaviors in the Default Rule apply to all requests for the property hostname(s) unless another rule overrides the Default Rule settings."
+  },
+  "comments": "Initial version."
+}
