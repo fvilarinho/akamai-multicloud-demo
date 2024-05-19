@@ -2,6 +2,9 @@ Getting Started
 ---------------
 This is a demo project to demonstrate how easy is to deploy an application (Web Server) in a K8S multi-cloud cluster 
 (including Akamai Cloud Computing) using Terraform.
+It will also create an Akamai GTM (Global Traffic Management) configuration to balance the traffic between all nodes, 
+the Akamai Property (CDN configuration) to deliver the content using the Akamai Edge Network and all Akamai Edge DNS 
+entries needed.
 
 ### Comments
 - **DON'T EXPOSE OR COMMIT ANY SECRET IN THE PROJECT.**
@@ -32,7 +35,7 @@ If you don't have this file, please create it based on `iac/settings.json.templa
 - `kubectl get nodes -o wide` - To see all nodes in the cluster.
 - `kubectl get pods -n akamai-multicloud-demo -o wide` - To see all pods running in the cluster.
 3. Open the following urls to see the application:
-- `http://<manager-ip|worker1-ip|worker2-ip|worker3-ip|gtm-hostname|edgedns-hostname>`. 
+- `http://<manager-ip|worker1-ip|worker2-ip|worker3-ip|akamai-gtm-hostname|akamai-property-hostname>`. 
 
 That's it! Now enjoy and have fun!
 
