@@ -1,23 +1,16 @@
 {
-  "tag": "multicloud",
+  "name": "akamai-multicloud-demo",
+  "tags": [ "multicloud" ],
   "linode": {
-    "region": "<region>",
     "manager": {
-      "label": "manager",
+      "name": "manager",
       "type": "<type>",
       "os": "<image>",
+      "region": "<region>",
       "user": "<user>"
     },
     "worker": {
-      "label": "worker1",
-      "type": "<type>",
-      "os": "<image>",
-      "user": "<user>"
-    }
-  },
-  "digitalocean": {
-    "worker": {
-      "label": "worker3",
+      "name": "worker1",
       "type": "<type>",
       "os": "<image>",
       "region": "<region>",
@@ -27,15 +20,26 @@
   "aws": {
     "region": "<region>",
     "worker": {
-      "label": "worker2",
+      "name": "worker2",
       "type": "<type>",
       "os": "<image>",
+      "user": "<user>"
+    }
+  },
+  "digitalocean": {
+    "worker": {
+      "name": "worker3",
+      "type": "<type>",
+      "os": "<image>",
+      "region": "<region>",
       "user": "<user>"
     }
   },
   "akamai": {
     "contract": "<contract>",
     "group": "<group>",
+    "email": "<email>",
+    "domain": "<domain>",
     "gtm": {
       "label": "demo",
       "type": "weighted",
@@ -53,12 +57,10 @@
         "timeout": 5
       },
       "weights": [25, 25, 25, 25],
-      "failover": "<failover>",
-      "dns": {
-        "name": "<name>",
-        "zone": "<zone>",
-        "ttl": 30
-      }
+    },
+    "property": {
+      "product": "prd_Fresca",
+      "ipVersion": "IPV4"
     }
   }
 }
