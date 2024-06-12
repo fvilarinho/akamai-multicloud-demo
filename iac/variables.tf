@@ -52,8 +52,3 @@ variable "edgeGridClientToken" {
 variable "edgeGridClientSecret" {
   type = string
 }
-
-variable "network" {
-  type = string
-  default = "STAGING"
-}
