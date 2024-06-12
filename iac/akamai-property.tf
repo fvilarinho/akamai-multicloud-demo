@@ -44,15 +44,31 @@ resource "akamai_property" "default" {
   ]
 }
 
-# Activates the property (CDN configuration).
-resource "akamai_property_activation" "default" {
+# Activates the property (CDN configuration) in staging network.
+resource "akamai_property_activation" "staging" {
   property_id                    = akamai_property.default.id
   version                        = akamai_property.default.latest_version
-  network                        = var.network
+  network                        = "STAGING"
   contact                        = [ local.settings.akamai.email ]
   auto_acknowledge_rule_warnings = true
   depends_on                     = [
     akamai_property.default,
     akamai_dns_record.certificateValidation
   ]
+}
+
+# Activates the property (CDN configuration) in production network.
+resource "akamai_property_activation" "production" {
+  property_id                    = akamai_property.default.id
+  version                        = akamai_property.default.latest_version
+  network                        = "PRODUCTION"
+  contact                        = [ local.settings.akamai.email ]
+  auto_acknowledge_rule_warnings = true
+
+  compliance_record {
+    noncompliance_reason_no_production_traffic {
+    }
+  }
+
+  depends_on = [ akamai_property_activation.staging ]
 }
